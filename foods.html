@@ -2,10 +2,19 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://use.fontawesome.com/51d8da5d08.js"></script>
   <title>Quantified Self - Manage Foods</title>
 </head>
 <body>
+
+  <form class="food-form" action="foods.html">
+    Food<input type="text" name="food" placeholder="">
+
+    <br>
+    Calories<input type="text" name="calories" placeholder="">
+    <input type="submit" value="Add Food" method="get">
+  </form>
 
   <table>
     <thead>
@@ -24,6 +33,25 @@
     </tbody>
   </table>
 
+  <script type="text/javascript">
+
+  var getFood = function(){
+    var calories = $('input[name="calories"]').val();
+    var food = $('input[name="food"]').val();
+    // firebase goes here?
+  }
+
+  $(document).ready(function(){
+    $('.food-form').on('submit', getFood);
+
+
+  $( ".food-form" ).submit(function( event ){
+    // alert( "this alert is working" );
+    event.preventDefault();
+    })
+  });
+
+  </script>
 
 
   <script src="main.bundle.js"></script>
