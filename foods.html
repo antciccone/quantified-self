@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://use.fontawesome.com/51d8da5d08.js"></script>
   <title>Quantified Self - Manage Foods</title>
 </head>
@@ -14,19 +13,17 @@
       <div class="col s12"><center>Enter food or search your log</center></div>
       <br>
       <br>
-      <br>
       <div class="col s6">
         <form class="food-form" action="foods.html">
-          Food
-          <input type="text" name="food" placeholder="">
+          <input type="text" name="food" placeholder="Enter a food">
           Calories
-          <input type="text" name="calories" placeholder="">
+          <input type="text" name="calories" placeholder="Enter Calories">
           <input type="submit" value="Add Food" method="get">
         </form>
       </div>
 
       <div class="col s6">
-        <input type="text" id="myInput" onkeyup="search()" placeholder="Search for food..">
+        <input type="text" id="myInput" onkeyup="search()" placeholder="Search for food...">
           <table id="myTable" class="bordered highlight" >
               <tr>
                 <th data-field="id">Name</th>
@@ -72,6 +69,7 @@
   filter = input.value.toUpperCase();
   table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
+  debugger;
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[0];
     if (td) {
