@@ -25,18 +25,16 @@
 
       <div class="col s6">
         <input type="text" id="myInput" onkeyup="search()" placeholder="Search for food...">
-          <table id="myTable" class="bordered highlight" >
+          <table id="myTable" class="bordered highlight">
               <tr>
                 <th data-field="id">Name</th>
                 <th data-field="name">Calories</th>
-                <th></th>
+                <th data-field="delete">Delete</th>
               </tr>
               <tr>
-                <td>cat </td>
-                <td>30</td>
-                <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>
+
               </tr>
-              
+
             </tbody>
           </table>
       </div>
@@ -65,12 +63,16 @@
 //   }
 // }
 
+  var allFoods = document.getElementById('myTable')
+
+
   var getFood = function(){
     var calories = $('input[name="calories"]').val();
     var food = $('input[name="food"]').val();
     if (calories.trim() === "") {
       throw new Error("Please enter a calorie amount");
     }
+    submitFood(food, calories);
     storeFood(food, calories);
   };
 
@@ -91,14 +93,37 @@
 
   };
 
+  function submitFood(food, calories){
+    var newRow = document.createElement('tr');
+    var foodCell = document.createElement('td');
+    foodCell.innerText = food;
+    var calorieCell = document.createElement('td');
+    calorieCell.innerText = calories;
+    var deleteCell = document.createElement('td')
+    deleteCell.innerHTML = '<i class="fa fa-trash-o" aria-hidden="true"></i>';
+
+    newRow.appendChild(foodCell);
+    newRow.appendChild(calorieCell);
+    newRow.appendChild(deleteCell);
+
+    allFoods.appendChild(newRow);
+
+  };
+
+  function updateTable() {
+    JSON.parse(localStorage.getItem('foods')).forEach(function(element){
+      submitFood(element.food, element.calories);
+    });
+  }
 
   $(document).ready(function(){
-  $('.food-form').on('submit', getFood);
+    $('.food-form').on('submit', getFood);
 
-  $( "form" ).submit(function( event ){
-    alert('working')
-    event.preventDefault();
-    })
+    $( "form" ).submit(function( event ){
+      event.preventDefault();
+    });
+
+    updateTable();
   });
 
   </script>
