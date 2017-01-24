@@ -9,41 +9,74 @@
 <body>
 
   <form class="food-form" action="foods.html">
-    Food<input type="text" name="food" placeholder="">
-
+    Food
+    <input type="text" name="food" placeholder="">
     <br>
-    Calories<input type="text" name="calories" placeholder="">
+    Calories
+    <br>
+    <input type="text" name="calories" placeholder="">
+    <br>
     <input type="submit" value="Add Food" method="get">
   </form>
 
-  <table>
-    <thead>
+<input type="text" id="myInput" onkeyup="search()" placeholder="Search for food..">
+  <table id="myTable">
       <tr>
         <th>Name</th>
         <th>Calories</th>
         <th></th>
       </tr>
-    </thead>
-    <tbody>
       <tr>
-        <td>test </td>
-        <td>test</td>
+        <td>cat </td>
+        <td>30</td>
+        <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>
+      </tr>
+      <tr>
+        <td>dog </td>
+        <td>5</td>
+        <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>
+      </tr>
+      <tr>
+        <td>dog </td>
+        <td>40</td>
         <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>
       </tr>
     </tbody>
   </table>
 
   <script type="text/javascript">
+  function search() {
+  // Declare variables
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  debugger;
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
 
   var getFood = function(){
     var calories = $('input[name="calories"]').val();
     var food = $('input[name="food"]').val();
-    // firebase goes here?
+    if (calories.trim() === "") {
+      throw new Error("Please enter a calorie amount");
+    }
   }
 
   $(document).ready(function(){
     $('.food-form').on('submit', getFood);
-
 
   $( ".food-form" ).submit(function( event ){
     // alert( "this alert is working" );
