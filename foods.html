@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="https://use.fontawesome.com/51d8da5d08.js"></script>
   <title>Quantified Self - Manage Foods</title>
 </head>
@@ -35,26 +36,7 @@
                 <td>30</td>
                 <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>
               </tr>
-              <tr>
-                <td>dog </td>
-                <td>5</td>
-                <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>
-              </tr>
-              <tr>
-                <td>brad </td>
-                <td>40</td>
-                <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>
-              </tr>
-              <tr>
-                <td>anthony </td>
-                <td>40</td>
-                <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>
-              </tr>
-              <tr>
-                <td>brad </td>
-                <td>40</td>
-                <td><i class="fa fa-trash-o" aria-hidden="true"></i></td>
-              </tr>
+              
             </tbody>
           </table>
       </div>
@@ -63,25 +45,25 @@
 </div>
 
   <script type="text/javascript">
-  function search() {
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  debugger;
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
-
+//   function search() {
+//   var input, filter, table, tr, td, i;
+//   input = document.getElementById("myInput");
+//   filter = input.value.toUpperCase();
+//   table = document.getElementById("myTable");
+//   tr = table.getElementsByTagName("tr");
+//   debugger;
+//   for (i = 0; i < tr.length; i++) {
+//     td = tr[i].getElementsByTagName("td")[0];
+//     debugger;
+//     if (td) {
+//       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+//         tr[i].style.display = "";
+//       } else {
+//         tr[i].style.display = "none";
+//       }
+//     }
+//   }
+// }
 
   var getFood = function(){
     var calories = $('input[name="calories"]').val();
@@ -89,13 +71,32 @@
     if (calories.trim() === "") {
       throw new Error("Please enter a calorie amount");
     }
-  }
+    storeFood(food, calories);
+  };
+
+  function storeFood(food, calories) {
+    var foodsJSON = localStorage.getItem('foods');
+
+    if(foodsJSON === null){
+      foodsJSON = '[]';
+    };
+
+    var currentFoods = JSON.parse(foodsJSON);
+
+    currentFoods.push({food: food, calories: calories});
+
+    foodsJSON = JSON.stringify(currentFoods);
+
+    localStorage.setItem('foods', foodsJSON);
+
+  };
+
 
   $(document).ready(function(){
-    $('.food-form').on('submit', getFood);
+  $('.food-form').on('submit', getFood);
 
-  $( ".food-form" ).submit(function( event ){
-    // alert( "this alert is working" );
+  $( "form" ).submit(function( event ){
+    alert('working')
     event.preventDefault();
     })
   });
