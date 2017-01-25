@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="/lib/css/foods.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="https://use.fontawesome.com/51d8da5d08.js"></script>
@@ -74,6 +75,9 @@
     }
     submitFood(food, calories);
     storeFood(food, calories);
+
+    $('input[name="food"]').val("")
+    $('input[name="calories"]').val("")
   };
 
   function storeFood(food, calories) {
@@ -119,15 +123,30 @@
   $(document).ready(function(){
     $('.food-form').on('submit', getFood);
 
-    $( "form" ).submit(function( event ){
+    $("form").submit(function( event ){
       event.preventDefault();
     });
 
-    updateTable();
+
+    $('#myTable').on("click", ".fa-trash-o", function(event){
+      event.preventDefault();
+    var foods = JSON.parse(localStorage["foods"]);
+    for (var i = 0; i < foods.length; i++) {
+      if (this.parentElement.parentElement.children[0].innerText === foods[i].food.trim() && this.parentElement.parentElement.children[1].innerText === foods[i].calories.trim()) {
+
+        this.parentElement.parentElement.remove();
+
+        foods.splice(i,1)
+        foodsJSON = JSON.stringify(foods);
+        localStorage.setItem('foods', foodsJSON);
+      }
+     }
+   })
+   updateTable();
   });
+
 
   </script>
 
-  <script src="main.bundle.js"></script>
 </body>
 </html>
