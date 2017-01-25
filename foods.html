@@ -119,15 +119,30 @@
   $(document).ready(function(){
     $('.food-form').on('submit', getFood);
 
-    $( "form" ).submit(function( event ){
+    $("form").submit(function( event ){
       event.preventDefault();
     });
 
-    updateTable();
+
+    $('#myTable').on("click", ".fa-trash-o", function(event){
+      event.preventDefault();
+    var foods = JSON.parse(localStorage["foods"]);
+    for (var i = 0; i < foods.length; i++) {
+      if (this.parentElement.parentElement.children[0].innerText === foods[i].food.trim() && this.parentElement.parentElement.children[1].innerText === foods[i].calories.trim()) {
+
+        this.parentElement.parentElement.remove();
+
+        foods.splice(i,1)
+        foodsJSON = JSON.stringify(foods);
+        localStorage.setItem('foods', foodsJSON);
+      }
+     }
+   })
+   updateTable();
   });
+
 
   </script>
 
-  <script src="main.bundle.js"></script>
 </body>
 </html>
