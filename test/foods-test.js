@@ -27,7 +27,7 @@ test.describe('testing foods.html', function() {
 
     submit.click()
 
-    driver.getElementsByTagName("td").getText().then(function functionName(food){
+    driver.findElement({id: 'food-name'}).getText().then(function functionName(food){
       assert.equal(food, "apple")
     });
   });
