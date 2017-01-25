@@ -17,8 +17,19 @@ test.describe('testing foods.html', function() {
   })
 
   test.it("should allow me to add food and calories to table", function(){
+    driver.get('http://localhost:8080/foods.html');
 
+    var foodInput = driver.findElement({name: 'food'})
+    var calInput = driver.findElement({name:'calories'})
+    foodInput.sendKeys('apple')
+    calInput.sendKeys('120')
+    var submit = driver.findElement({id: 'submit-food'})
 
-  })
+    submit.click()
+
+    driver.getElementsByTagName("td").getText().then(function functionName(food){
+      assert.equal(food, "apple")
+    });
+  });
 
 });
