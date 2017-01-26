@@ -47,4 +47,20 @@ test.describe('testing foods.html', function() {
     });
   });
 
+  test.it("user should see error if no calories are entered", function(){
+    driver.get('http://localhost:8080/foods.html');
+
+    var foodInput = driver.findElement({name: 'food'})
+    // var calInput = driver.findElement({name:'calories'})
+    foodInput.sendKeys('apple')
+    // calInput.sendKeys('')
+    var submit = driver.findElement({id: 'submit-food'})
+
+    submit.click()
+
+    driver.findElement({id: 'calories-error'}).getText().then(function functionName(error){
+      assert.equal(error, "Please enter a calorie amount")
+    });
+  });
+
 });
