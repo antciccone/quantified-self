@@ -26,7 +26,7 @@ test.describe('testing foods.html', function() {
     var submit = driver.findElement({id: 'submit-food'})
     submit.click()
 
-    driver.findElement({id: 'food-name'}).getText().then(function functionName(food){
+    driver.findElement({id: 'food-apple'}).getText().then(function functionName(food){
       assert.equal(food, "apple")
     });
   });
@@ -51,9 +51,7 @@ test.describe('testing foods.html', function() {
     driver.get('http://localhost:8080/foods.html');
 
     var foodInput = driver.findElement({name: 'food'})
-    // var calInput = driver.findElement({name:'calories'})
     foodInput.sendKeys('apple')
-    // calInput.sendKeys('')
     var submit = driver.findElement({id: 'submit-food'})
 
     submit.click()
@@ -63,4 +61,30 @@ test.describe('testing foods.html', function() {
     });
   });
 
+  test.it("user should see added foods", function(){
+    driver.get('http://localhost:8080/foods.html');
+
+    var foodInput = driver.findElement({name: 'food'})
+    var calorieInput = driver.findElement({name: 'calories'})
+    foodInput.sendKeys('apple')
+    calorieInput.sendKeys('100')
+    var submit = driver.findElement({id: 'submit-food'})
+
+    submit.click();
+
+    var foodInput = driver.findElement({name: 'food'})
+    foodInput.sendKeys('banana')
+    var calorieInput = driver.findElement({name: 'calories'})
+    calorieInput.sendKeys('200')
+    var submit = driver.findElement({id: 'submit-food'})
+
+    submit.click();
+
+    driver.findElement({id: 'food-apple'}).getText().then(function functionName(food){
+      assert.equal(food, "apple")
+    });
+    driver.findElement({id: 'calories-100'}).getText().then(function functionName(calories){
+      assert.equal(calories, "100")
+    });
+  });
 });
