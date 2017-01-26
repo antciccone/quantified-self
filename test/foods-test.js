@@ -1,6 +1,7 @@
 var assert    = require('chai').assert;
 var webdriver = require('selenium-webdriver');
 var test      = require('selenium-webdriver/testing');
+var expect    = require('chai').expect;
 
 test.describe('testing foods.html', function() {
   var driver;
@@ -87,7 +88,29 @@ test.describe('testing foods.html', function() {
       assert.equal(calories, "100")
     });
     driver.findElement({id: 'delete-apple-100'}).getAttribute("innerHTML").then(function functionName(deletes){
-      assert.equal(deletes, '<i class="fa fa-trash-o" aria-hidden="true"></i>')
+      assert.equal(deletes, '<i id="trash" class="fa fa-trash-o" aria-hidden="true"></i>')
     });
   });
-});
+
+  test.it("user can delete a food", function(){
+    driver.get('http://localhost:8080/foods.html');
+
+    var foodInput = driver.findElement({name: 'food'})
+    var calorieInput = driver.findElement({name: 'calories'})
+    foodInput.sendKeys('apple')
+    calorieInput.sendKeys('100')
+    var submit = driver.findElement({id: 'submit-food'})
+
+    submit.click()
+
+    driver.findElement({id: 'food-apple'}).getText().then(function functionName(food){
+      assert.equal(food, "apple")
+    });
+
+    var trash = driver.findElement({id: 'trash'})
+    trash.click()
+    var noFood = driver.findElement({id: "t-body"}).innerHTML
+
+    expect(noFood).to.be.empty;
+    });
+  });
