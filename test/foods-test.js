@@ -90,4 +90,19 @@ test.describe('testing foods.html', function() {
       assert.equal(deletes, '<i class="fa fa-trash-o" aria-hidden="true"></i>')
     });
   });
+
+  test.it("user can delete a food", function(){
+    driver.get('http://localhost:8080/foods.html');
+
+    var foodInput = driver.findElement({name: 'food'})
+    foodInput.sendKeys('apple')
+    var submit = driver.findElement({id: 'submit-food'})
+
+    submit.click()
+
+    driver.findElement({id: 'calories-error'}).getText().then(function functionName(error){
+      assert.equal(error, "Please enter a calorie amount")
+    });
+  });
+
 });
