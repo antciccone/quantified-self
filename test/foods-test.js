@@ -86,5 +86,8 @@ test.describe('testing foods.html', function() {
     driver.findElement({id: 'calories-100'}).getText().then(function functionName(calories){
       assert.equal(calories, "100")
     });
+    driver.findElement({id: 'delete-apple-100'}).getAttribute("innerHTML").then(function functionName(deletes){
+      assert.equal(deletes, '<i class="fa fa-trash-o" aria-hidden="true"></i>')
+    });
   });
 });
