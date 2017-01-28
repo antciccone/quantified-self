@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="https://use.fontawesome.com/51d8da5d08.js"></script>
-  <title>Quantified Self - Manage Foods</title>
+  <title>Diary</title>
 </head>
 <body>
 
@@ -15,7 +15,7 @@
     <div class="nav-wrapper">
       <a href="#" class="brand-logo center">Quantified Self</a>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li class="active"><a href="index.html">Food Diary</a></li>
+        <li><a href="index.html">Food Diary</a></li>
         <li><a href="exercises.html">Exercise Log</a></li>
         <li><a href="foods.html">Food Log</a></li>
       </ul>
@@ -26,38 +26,135 @@
 <div class="container">
 
   <div class="row">
-    <div class="col s6">
-      <table id="myTable" class="bordered highlight">
-        <h4> Foods </h4>
-    <thead>
-      <tr>
-        <th data-field="id">Name</th>
-        <th data-field="name">Calories</th>
-        <th data-field="delete">Delete</th>
-      </tr>
-    </thead>
-    <tbody id="t-body">
 
-    </tbody>
-  </table>
+    <!-- 1 -->
+    <div class="col s6">
+      <h4> Breakfast </h4>
+      <table id="breakfast" class="bordered highlight">
+        <thead>
+          <tr>
+            <th data-field="id">Name</th>
+            <th data-field="name">Calories</th>
+            <th data-field="delete">Delete</th>
+          </tr>
+        </thead>
+        <tbody id="b-body">
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 2 -->
+    <div class="col s6">
+      <h4> Lunch </h4>
+      <table id="lunch" class="bordered highlight">
+        <thead>
+          <tr>
+            <th data-field="id">Name</th>
+            <th data-field="name">Calories</th>
+            <th data-field="delete">Delete</th>
+          </tr>
+        </thead>
+        <tbody id="l-body">
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3-->
+    <div class="col s6">
+      <h4> Dinner </h4>
+      <table id="dinner" class="bordered highlight">
+        <thead>
+          <tr>
+            <th data-field="id">Name</th>
+            <th data-field="name">Calories</th>
+            <th data-field="delete">Delete</th>
+          </tr>
+        </thead>
+        <tbody id="d-body">
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4 -->
+    <div class="col s6">
+      <h4> Snacks </h4>
+      <table id="snacks" class="bordered highlight">
+        <thead>
+          <tr>
+            <th data-field="id">Name</th>
+            <th data-field="name">Calories</th>
+            <th data-field="delete">Delete</th>
+          </tr>
+        </thead>
+        <tbody id="s-body">
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 5 -->
+    <div class="col s6">
+      <h4> Exercise </h4>
+      <table id="daily-exercise" class="bordered highlight">
+        <thead>
+          <tr>
+            <th data-field="id">Name</th>
+            <th data-field="name">Calories</th>
+            <th data-field="delete">Delete</th>
+          </tr>
+        </thead>
+        <tbody id="e-body">
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 6 -->
+    <div class="col s6">
+      <h4> Totals </h4>
+      <table id="totals" class="bordered highlight">
+        <thead>
+          <tr>
+            <th data-field="id">Name</th>
+            <th data-field="name">Calories</th>
+            <th data-field="delete">Delete</th>
+          </tr>
+        </thead>
+        <tbody id="tot-body">
+        </tbody>
+      </table>
+    </div>
+
+
+    <!-- 7 -->
+  <div class="col s6">
+    <h4> Foods </h4>
+    <table id="myTable" class="bordered highlight">
+      <thead>
+        <tr>
+          <th data-field="id">Name</th>
+          <th data-field="name">Calories</th>
+          <th data-field="delete">Delete</th>
+        </tr>
+      </thead>
+      <tbody id="t-body">
+      </tbody>
+    </table>
   </div>
 
+  <!-- 8 -->
   <div class="col s6">
+    <h4> Exercises </h4>
     <table id="myExTable" class="bordered highlight">
-      <h4> Exercises </h4>
-  <thead>
-    <tr>
-      <th data-field="id">Name</th>
-      <th data-field="name">Calories</th>
-      <th data-field="delete">Delete</th>
-    </tr>
-  </thead>
-  <tbody id="t-body">
-  </tbody>
-</table>
-</div>
-
-
+      <thead>
+        <tr>
+          <th data-field="id">Name</th>
+          <th data-field="name">Calories</th>
+          <th data-field="delete">Delete</th>
+        </tr>
+      </thead>
+      <tbody id="t-body">
+      </tbody>
+    </table>
+  </div>
 
   </div>
 </div>
