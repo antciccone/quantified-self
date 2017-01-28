@@ -2,3 +2,15 @@ i:hover {
   cursor: pointer;
   color: red;
 }
+
+.diary-btns {
+  margin-bottom: 5%;
+}
+
+#food-search {
+  border: 1px solid #D0D0D0;
+}
+
+#exercise-search {
+  border: 1px solid #D0D0D0;
+}
