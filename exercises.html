@@ -9,12 +9,22 @@
   <title>Quantified Self - Manage Foods</title>
 </head>
 <body>
-  <div class="container-fluid">
-      <div class="row">
-        <div class="col s12"><center>Enter an exercise or search your log</center></div>
+
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">Quantified Self</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="">Food Diary</a></li>
+        <li><a href="exercises.html">Exercise Log</a></li>
+        <li><a href="foods.html">Food Log</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+        <div class="col s12"><center><h3>Enter an exercise or search your exercise log<h3></center></div>
         <br>
         <br>
-        <div class="col s6">
           <form id="anthony" class="exercise-form" action="exercises.html">
           <div id="exercise-input">
             <input type="text" name="exercise" placeholder="Enter an exercise">
@@ -22,11 +32,9 @@
           <div class="ex-calories-input">
             <input type="text" name="calories" placeholder="Enter Calories">
           </div>
-            <input id="submit-exercise" type="submit" value="Add Exercise" method="get">
+            <input class="waves-effect waves-light btn" id="submit-exercise" type="submit" value="Add Exercise" method="get">
           </form>
-        </div>
-
-        <div class="col s6">
+          <br>
           <input type="text" id="myInput" onkeyup="search()" placeholder="Search for Exercises...">
 
             <table id="myTable" class="bordered highlight">
