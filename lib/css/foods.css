@@ -19,6 +19,10 @@ i:hover {
   border: 1px solid #D0D0D0;
 }
 
+#lunch-calorie-total {
+  border: 1px solid #D0D0D0;
+}
+
 #snacks-calorie-total {
   border: 1px solid #D0D0D0;
 }
