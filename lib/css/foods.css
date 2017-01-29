@@ -38,3 +38,11 @@ i:hover {
 #total-header {
   margin-bottom: 1.9em;
 }
+
+#remaining-red {
+  color:red;
+}
+
+#remaining-green {
+  color:#42f456;
+}
