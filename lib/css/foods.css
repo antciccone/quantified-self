@@ -30,3 +30,11 @@ i:hover {
 #dinner-calorie-total {
   border: 1px solid #D0D0D0;
 }
+
+#exercise-calorie-total {
+  border: 1px solid #D0D0D0;
+}
+
+#total-header {
+  margin-bottom: 1.9em;
+}
