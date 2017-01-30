@@ -46,3 +46,8 @@ i:hover {
 #remaining-green {
   color:#42f456;
 }
+
+.date-format {
+  padding-left: 1em;
+  padding-right: 1em;
+}
