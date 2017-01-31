@@ -21,13 +21,16 @@ test.describe('testing foods.html', function() {
     driver.get('http://localhost:8080/foods.html');
 
     var foodInput = driver.findElement({name: 'food'})
+
     var calInput = driver.findElement({name:'calories'})
     foodInput.sendKeys('apple')
     calInput.sendKeys('120')
+
+
     var submit = driver.findElement({id: 'submit-food'})
     submit.click()
 
-    driver.findElement({id: 'food-apple'}).getText().then(function functionName(food){
+    driver.findElement({id: 'food-td'}).getText().then(function functionName(food){
       assert.equal(food, "apple")
     });
   });
@@ -81,13 +84,13 @@ test.describe('testing foods.html', function() {
 
     submit.click();
 
-    driver.findElement({id: 'food-apple'}).getText().then(function functionName(food){
-      assert.equal(food, "apple")
+    driver.findElement({id: 'food-td'}).getText().then(function functionName(food){
+      assert.equal(food, "banana")
     });
-    driver.findElement({id: 'calories-100'}).getText().then(function functionName(calories){
-      assert.equal(calories, "100")
+    driver.findElement({id: 'calories-td'}).getText().then(function functionName(calories){
+      assert.equal(calories, "200")
     });
-    driver.findElement({id: 'delete-apple-100'}).getAttribute("innerHTML").then(function functionName(deletes){
+    driver.findElement({id: 'delete-banana-200'}).getAttribute("innerHTML").then(function functionName(deletes){
       assert.equal(deletes, '<i id="trash" class="fa fa-trash-o" aria-hidden="true"></i>')
     });
   });
@@ -103,7 +106,7 @@ test.describe('testing foods.html', function() {
 
     submit.click()
 
-    driver.findElement({id: 'food-apple'}).getText().then(function functionName(food){
+    driver.findElement({id: 'food-td'}).getText().then(function functionName(food){
       assert.equal(food, "apple")
     });
 
