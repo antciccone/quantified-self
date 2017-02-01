@@ -66,4 +66,53 @@ test.describe('testing exercises.html', function() {
     expect(noFood).to.be.empty;
   });
 
+  test.it("when a user add's a food to breakfast the total calories for the breakfast table increase by calorie amount", function(){
+    driver.get('http://localhost:8080/index.html');
+    var foodArray = JSON.stringify([{food: 'apple', calories: '100'}]);
+    driver.executeScript("window.localStorage.setItem('foods', '" + foodArray + "');");
+
+    driver.get('http://localhost:8080/index.html');
+
+    driver.findElement({css: 'label[for=food-0]'}).click();
+    driver.findElement({id: 'submit-breakfast'}).click()
+
+    driver.findElement({id: 'breakfast-calories-total-td'}).getText().then(function functionName(food){
+      assert.equal(food, "100")
+    });
+  });
+
+  test.it("when a user add's a food to breakfast the remianing calories decrease by calorie amount", function(){
+    driver.get('http://localhost:8080/index.html');
+    var foodArray = JSON.stringify([{food: 'apple', calories: '100'}]);
+    driver.executeScript("window.localStorage.setItem('foods', '" + foodArray + "');");
+
+    driver.get('http://localhost:8080/index.html');
+
+    driver.findElement({css: 'label[for=food-0]'}).click();
+    driver.findElement({id: 'submit-breakfast'}).click()
+
+    driver.findElement({id: 'breakfast-remaining-total'}).getText().then(function functionName(food){
+      assert.equal(food, "300")
+    });
+  });
+
+  test.it("when a user add's a food to breakfast your total daily calories table changes", function(){
+    driver.get('http://localhost:8080/index.html');
+    var foodArray = JSON.stringify([{food: 'apple', calories: '100'}]);
+    driver.executeScript("window.localStorage.setItem('foods', '" + foodArray + "');");
+
+    driver.get('http://localhost:8080/index.html');
+
+    driver.findElement({css: 'label[for=food-0]'}).click();
+    driver.findElement({id: 'submit-breakfast'}).click()
+
+    driver.findElement({id: 'remaining-green'}).getText().then(function functionName(food){
+      assert.equal(food, "1900")
+    });
+    driver.findElement({id: 'cal-consumed'}).getText().then(function functionName(food){
+      assert.equal(food, "100")
+    });
+  });
+
+
 });
