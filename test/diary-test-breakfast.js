@@ -32,4 +32,18 @@ test.describe('testing exercises.html', function() {
     });
   });
 
+  test.it("user can add a food to their breakfast table", function(){
+    driver.get('http://localhost:8080/index.html');
+    var foodArray = JSON.stringify([{food: 'apple', calories: '100'}]);
+    driver.executeScript("window.localStorage.setItem('foods', '" + foodArray + "');");
+    driver.get('http://localhost:8080/index.html');
+
+    driver.findElement({css: 'label[for=food-0]'}).click();
+    driver.findElement({id: 'submit-breakfast'}).click()
+
+    driver.findElement({id: '02/01/2017-apple-td'}).getText().then(function functionName(food){
+      assert.equal(food, "apple")
+    });
+  });
+
 });
