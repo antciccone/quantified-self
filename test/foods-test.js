@@ -115,5 +115,7 @@ test.describe('testing foods.html', function() {
     var noFood = driver.findElement({id: "t-body"}).innerHTML
 
     expect(noFood).to.be.empty;
+
+    expect(noFood).to.be.empty;
     });
   });
