@@ -76,7 +76,7 @@ test.describe('testing index.html', function() {
     driver.findElement({css: 'label[for=food-0]'}).click();
     driver.findElement({id: 'submit-breakfast'}).click()
 
-    driver.findElement({id: 'breakfast-calories-total-td'}).getText().then(function functionName(food){
+    driver.findElement({id: 'breakfastTable-calories-total-td'}).getText().then(function functionName(food){
       assert.equal(food, "100")
     });
   });
@@ -91,7 +91,7 @@ test.describe('testing index.html', function() {
     driver.findElement({css: 'label[for=food-0]'}).click();
     driver.findElement({id: 'submit-breakfast'}).click()
 
-    driver.findElement({id: 'breakfast-remaining-total'}).getText().then(function functionName(food){
+    driver.findElement({id: 'breakfastTable-remaining-total'}).getText().then(function functionName(food){
       assert.equal(food, "300")
     });
   });
