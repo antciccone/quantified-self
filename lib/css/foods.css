@@ -47,6 +47,10 @@ i:hover {
   color:#42f456;
 }
 
+#remaining-black {
+  color:black;
+}
+
 .date-format {
   padding-left: 1em;
   padding-right: 1em;
