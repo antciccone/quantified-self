@@ -18,35 +18,21 @@ test.describe('testing index.html', function() {
   })
 
 
-  test.it("user should see list of foods in food table", function(){
-    driver.get('http://localhost:8080/index.html');
-    var foodArray = JSON.stringify([{food: 'apple', calories: '100'}, {food: 'pear', calories: '50'}]);
-    driver.executeScript("window.localStorage.setItem('foods', '" + foodArray + "');");
-    driver.get('http://localhost:8080/index.html');
-
-    driver.findElement({id: 'food-td'}).getText().then(function functionName(food){
-      assert.equal(food, "apple")
-    });
-    driver.findElement({id: 'calories-td'}).getText().then(function functionName(cal){
-      assert.equal(cal, "100")
-    });
-  });
-
-  test.it("user can add a food to their breakfast table", function(){
+  test.it("user can add a food to their lunch table", function(){
     driver.get('http://localhost:8080/index.html');
     var foodArray = JSON.stringify([{food: 'apple', calories: '100'}]);
     driver.executeScript("window.localStorage.setItem('foods', '" + foodArray + "');");
     driver.get('http://localhost:8080/index.html');
 
     driver.findElement({css: 'label[for=food-0]'}).click();
-    driver.findElement({id: 'submit-breakfast'}).click()
+    driver.findElement({id: 'submit-lunch'}).click()
 
     driver.findElement({id: '02/01/2017-apple-td'}).getText().then(function functionName(food){
       assert.equal(food, "apple")
     });
   });
 
-  test.it("user can delete a food from their breakfast table", function(){
+  test.it("user can delete a food from their lunch table", function(){
     driver.get('http://localhost:8080/index.html');
     var foodArray = JSON.stringify([{food: 'apple', calories: '100'}]);
     driver.executeScript("window.localStorage.setItem('foods', '" + foodArray + "');");
@@ -54,19 +40,19 @@ test.describe('testing index.html', function() {
     driver.get('http://localhost:8080/index.html');
 
     driver.findElement({css: 'label[for=food-0]'}).click();
-    driver.findElement({id: 'submit-breakfast'}).click()
+    driver.findElement({id: 'submit-lunch'}).click()
 
     driver.findElement({id: '02/01/2017-apple-td'}).getText().then(function functionName(food){
       assert.equal(food, "apple")
     });
 
     driver.findElement({id: 'trash'}).click()
-    var noFood = driver.findElement({id: "b-body"}).innerHTML
+    var noFood = driver.findElement({id: "l-body"}).innerHTML
 
     expect(noFood).to.be.empty;
   });
 
-  test.it("when a user add's a food to breakfast the total calories for the breakfast table increase by calorie amount", function(){
+  test.it("when a user add's a food lunch the total calories for the lunch table increase by calorie amount", function(){
     driver.get('http://localhost:8080/index.html');
     var foodArray = JSON.stringify([{food: 'apple', calories: '100'}]);
     driver.executeScript("window.localStorage.setItem('foods', '" + foodArray + "');");
@@ -74,14 +60,14 @@ test.describe('testing index.html', function() {
     driver.get('http://localhost:8080/index.html');
 
     driver.findElement({css: 'label[for=food-0]'}).click();
-    driver.findElement({id: 'submit-breakfast'}).click()
+    driver.findElement({id: 'submit-lunch'}).click()
 
-    driver.findElement({id: 'breakfast-calories-total-td'}).getText().then(function functionName(food){
+    driver.findElement({id: 'lunchTable-calories-total-td'}).getText().then(function functionName(food){
       assert.equal(food, "100")
     });
   });
 
-  test.it("when a user add's a food to breakfast the remianing calories decrease by calorie amount", function(){
+  test.it("when a user add's a food to lucnh table the remianing calories decrease by calorie amount", function(){
     driver.get('http://localhost:8080/index.html');
     var foodArray = JSON.stringify([{food: 'apple', calories: '100'}]);
     driver.executeScript("window.localStorage.setItem('foods', '" + foodArray + "');");
@@ -89,22 +75,22 @@ test.describe('testing index.html', function() {
     driver.get('http://localhost:8080/index.html');
 
     driver.findElement({css: 'label[for=food-0]'}).click();
-    driver.findElement({id: 'submit-breakfast'}).click()
+    driver.findElement({id: 'submit-lunch'}).click()
 
-    driver.findElement({id: 'breakfast-remaining-total'}).getText().then(function functionName(food){
-      assert.equal(food, "300")
+    driver.findElement({id: 'lunchTable-remaining-total'}).getText().then(function functionName(food){
+      assert.equal(food, "500")
     });
   });
 
-  test.it("when a user add's a food to breakfast your total daily calories table changes", function(){
+  test.it("when a user add's a food to lunch your total daily calories table changes", function(){
     driver.get('http://localhost:8080/index.html');
     var foodArray = JSON.stringify([{food: 'apple', calories: '100'}]);
     driver.executeScript("window.localStorage.setItem('foods', '" + foodArray + "');");
-
     driver.get('http://localhost:8080/index.html');
 
     driver.findElement({css: 'label[for=food-0]'}).click();
-    driver.findElement({id: 'submit-breakfast'}).click()
+    driver.findElement({id: 'submit-lunch'}).click()
+
 
     driver.findElement({id: 'remaining-green'}).getText().then(function functionName(food){
       assert.equal(food, "1900")
